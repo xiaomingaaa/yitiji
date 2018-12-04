@@ -41,7 +41,7 @@ namespace yitiji_ma.entity
         }
         public override string ToString()
         {
-            string temp = string.Format("{\"姓名\":\"{0}\",\"学号\":\"{1}\",\"新物理卡号\":{2},\"卡内余额\":{3}}",this.Name,this.Stuno,this.NewPhyid,this.Money);
+            string temp = "{}";
             return temp;
         }
     }

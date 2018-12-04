@@ -16,13 +16,13 @@ namespace yitiji_ma
         {
             InitializeComponent();
         }
-        public void test()
+        public void Test()
         {
             //Config temp = ConfigUtil.getConfig();
             //MessageBox.Show(temp.ToString());
             //MessageBox.Show(temp.Host+temp.User+temp.Ledport);
 
-            //MessageBox.Show( Log.WriteJsonData("马腾飞","123456",123456789,36.2));
+            MessageBox.Show( Log.WriteJsonData("马腾飞","123456",123456789,36.2));
             //Log.WriteJsonData("马腾飞", "123456", 123456789, 36.2);
             //Log.WriteError("出现报错信息");
             //Log.WriteLog("用户操作日志");
@@ -34,7 +34,7 @@ namespace yitiji_ma
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            test();
+            Test();
         }
 
         private void button1_Click(object sender, EventArgs e)

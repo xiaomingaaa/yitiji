@@ -51,11 +51,11 @@ namespace yitiji_ma.util
         public static string WriteJsonData(string name,string stuno,long phyid,double money)
         {
             Student student = new Student(name,stuno,phyid,money);
-            string path = "./Logs/student_log"+DateTime.Now.ToString()+".json";
+            string path = "./Logs/student_log"+ DateTime.Now.ToString("yyyy-MM-dd") + ".json";
            
             try
             {
-
+                Log.WriteError(student.ToString());
                 string jsonStr = JsonConvert.SerializeObject(student.ToString());
                 if (!File.Exists(path)) 
                 {
