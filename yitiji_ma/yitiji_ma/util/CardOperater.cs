@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using yitiji_ma.controller;
 namespace yitiji_ma.util
 {
     /// <summary>
@@ -52,6 +53,7 @@ namespace yitiji_ma.util
         public static extern int K720_S50ReadBlock(IntPtr handle, Byte macaddr, Byte sector, Byte block, Byte[] outputData, [MarshalAs(UnmanagedType.LPStr)] StringBuilder record);
         /// <summary>
         /// 验证卡片扇区密码
+        /// 0x30->密码种类A，0x31密码种类B
         /// </summary>
         /// <param name="handle"></param>
         /// <param name="nacaddr"></param>
@@ -371,6 +373,113 @@ namespace yitiji_ma.util
             }
             return temp;
         }
-        
+        public Error WriteCard(string com,int cardnum,string name,string mm,double money,byte lx)
+        {
+            string studentInfo =string.Format("姓名：{0}，卡号：{1}，卡内余额：{2}",name,cardnum,money);
+            try
+            {
+                if (IsEmptyHandl())
+                {
+                    handle = K720_CommOpen(com);
+                }
+                int sendcard = K720_SendCmd(handle,0,"FC7",3,output);
+                if (sendcard != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("补卡时写卡失败："+studentInfo);
+                    return Error.SEND_CARD_ERROR;
+                }
+                int xunka = K720_S50DetectCard(handle,0,output);
+                if (xunka != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("补卡时寻卡失败：" + studentInfo);
+                    return Error.DETECT_CARD_ERROR;//寻卡失败
+                }
+                //验证卡扇区密码数据
+                byte[] secret = new byte[6] {0x14,0x70,0x25,0x85,0x67,0x58 };
+                int loadSecret = K720_S50LoadSecKey(handle,0,0,0x30,secret,output);
+                if (loadSecret != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("写卡时0扇区密码验证失败："+studentInfo);
+                    return Error.PWD_LOAD_ERROR;//密码验证失败
+                }
+                int readPhy = K720_S50ReadBlock(handle,0,0,0,readByte,output);
+                if (readPhy != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("读取新卡物理卡号失败："+studentInfo);
+                    return Error.READ_PHYID_ERROR;//读物理卡号失败
+                }
+                phyid = getCardPhyId(readByte);//获取物理卡号
+                string date = DateTime.Now.AddYears(10).ToString("yyyy-MM-dd");
+                temp = getFristBlock(cardnum,name,date);
+                int writeFristBlock = K720_S50WriteBlock(handle,0,0,1,temp,output);
+                if (writeFristBlock != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("卡0扇区块1写入失败："+studentInfo);
+                    return Error.WRITE_CARD_ERROR;//写卡失败
+                }
+                temp = getSecondBlock(mm,lx);
+                int writeSecondBlock = K720_S50WriteBlock(handle,0,0,2,temp,output);
+                if (writeSecondBlock != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("卡0扇区块2写入失败");
+                    return Error.WRITE_CARD_ERROR;
+                }
+                int loadSecret1 = K720_S50LoadSecKey(handle,0,1,0x30,secret,output);
+                if (loadSecret1 != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("扇区1密码验证失败："+studentInfo);
+                    return Error.PWD_LOAD_ERROR;//密码验证失败
+                }
+                temp = getSecondSector(money);
+                int writeMoney = K720_S50WriteBlock(handle,0,1,0,temp,output);
+                if (writeMoney != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("卡写金额失败："+studentInfo);
+                    return Error.WRITE_CARD_ERROR;
+                }
+                int sendcard1 = K720_SendCmd(handle,0,"FC0",3,output);
+                if (sendcard1 != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("发卡到取卡位置失败："+studentInfo);
+                    return Error.SEND_CARD_ERROR;//发卡失败
+                }
+                ReleaseHandle(studentInfo);
+                Log.WriteLog("写卡成功："+studentInfo);
+                return Error.SEND_CARD_SUCCESS;
+            }
+            catch (Exception e)
+            {
+                ReleaseHandle(studentInfo);
+                Log.WriteError("写卡失败:"+studentInfo+"\r\n错误信息："+e.Message);
+                return Error.WRITE_CARD_ERROR;//写卡失败
+            }
+        }
+        /// <summary>
+        /// 关闭已经打开的串口句柄
+        /// </summary>
+        /// <returns>0成功</returns>
+        private void ReleaseHandle(string studentInfo)
+        {
+            int flag = -1;
+            if(!IsEmptyHandl())
+                flag= K720_CommClose(handle);
+            if (flag != 0)
+            {
+                Log.WriteError("释放串口句柄失败："+studentInfo);
+            }
+        }
+        private bool IsEmptyHandl()
+        {
+            return handle == IntPtr.Zero;
+        }
     }
 }

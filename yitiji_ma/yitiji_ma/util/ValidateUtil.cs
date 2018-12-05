@@ -26,6 +26,6 @@ namespace yitiji_ma.util
             }
             return false;
         }
-
+        
     }
 }

@@ -36,7 +36,7 @@ namespace yitiji_ma.controller
                 {
                     return Error.HTTP_NONE;//没有学生信息
                 }
-                Log.WriteLog(string.Format("学生补卡信息:姓名：{0}",studentInfo));
+                Log.WriteLog(string.Format("学生挂失卡信息:姓名：{0}",studentInfo));
                 //查询本地数据库学生信息
                 string sql = "select cardnum,phyid,deptname,cardstatus from hr_employee where empno = '" + stuno + "' and empname = '" + name + "'";
                 using (DataTable table=SQLHelper.GetAllResult(sql)) 

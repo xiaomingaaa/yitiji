@@ -14,6 +14,7 @@ namespace yitiji_ma.entity
         private int school_id;//学校号
         private string ledport;//写卡吐卡端口
         private int startSectoin;//加密扇区
+        private string initpwd;
         public string Host
         {
             get { return host; }
@@ -49,6 +50,9 @@ namespace yitiji_ma.entity
             get { return startSectoin; }
             set { startSectoin = value; }
         }
+
+        public string Initpwd { get => initpwd; set => initpwd = value; }
+
         public override string ToString()
         {
             string sqlconn = string.Format("Data Source={0};Database={1};User id={2};PWD={3}",this.Host,this.Database,this.User,this.Pwd);

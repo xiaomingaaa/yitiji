@@ -50,5 +50,6 @@ namespace yitiji_ma.util
                 return response.Content.ReadAsStreamAsync().Result;
             }
         }
+
     }
 }

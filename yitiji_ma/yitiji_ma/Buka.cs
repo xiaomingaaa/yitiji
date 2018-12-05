@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using yitiji_ma.controller;
 namespace yitiji_ma
 {
     public partial class Buka : Form
@@ -27,7 +27,9 @@ namespace yitiji_ma
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-
+            BukaController buka = new BukaController();
+           Error ex=  buka.Buka(telone.Text.Trim(),teltwo.Text.Trim());
+            MessageBox.Show(error.errorMessage(ex));
         }
     }
 }
