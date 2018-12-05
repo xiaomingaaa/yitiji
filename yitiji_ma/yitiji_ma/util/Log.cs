@@ -48,6 +48,28 @@ namespace yitiji_ma.util
 
             }
         }
+        /// <summary>
+        /// 用于记录学生信息不卡信息
+        /// </summary>
+        /// <param name="str"></param>
+        public static void WriteData(string str)
+        {
+            string log_path = AppDomain.CurrentDomain.BaseDirectory + "Logs" + "/data_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            try
+            {
+                str = DateTime.Now + "\r\n" + str;
+                byte[] bytes = Encoding.Default.GetBytes(str + "\r\n");
+                FileStream fileStream = File.OpenWrite(log_path);
+                fileStream.Position = fileStream.Length;
+                fileStream.Write(bytes, 0, bytes.Length);
+                fileStream.Flush();
+                fileStream.Close();
+            }
+            catch
+            {
+
+            }
+        }
         public static string WriteJsonData(string name,string stuno,long phyid,double money)
         {
             Student student = new Student(name,stuno,phyid,money);
@@ -55,7 +77,7 @@ namespace yitiji_ma.util
            
             try
             {
-                Log.WriteError(student.ToString());
+                Log.WriteData(student.ToString());
                 string jsonStr = JsonConvert.SerializeObject(student.ToString());
                 if (!File.Exists(path)) 
                 {

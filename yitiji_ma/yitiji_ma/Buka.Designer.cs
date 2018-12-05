@@ -76,13 +76,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::yitiji_ma.Properties.Resources.main_guashi1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1408, 824);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.teltwo);
             this.Controls.Add(this.telone);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Buka";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);

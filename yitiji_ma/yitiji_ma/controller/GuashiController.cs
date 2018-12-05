@@ -31,10 +31,12 @@ namespace yitiji_ma.controller
                 }
                 string stuno=stuinfo["stuno"];
                 string name=stuinfo["name"];
+                string studentInfo = string.Format("学生姓名：{0},学生学号：{1}",name,stuno);
                 if ((stuno == null || stuno == "")|(name==null||name==""))
                 {
                     return Error.HTTP_NONE;//没有学生信息
                 }
+                Log.WriteLog(string.Format("学生补卡信息:姓名：{0}",studentInfo));
                 //查询本地数据库学生信息
                 string sql = "select cardnum,phyid,deptname,cardstatus from hr_employee where empno = '" + stuno + "' and empname = '" + name + "'";
                 using (DataTable table=SQLHelper.GetAllResult(sql)) 
@@ -45,12 +47,14 @@ namespace yitiji_ma.controller
                     int cardstatus =Convert.ToInt32(table.Rows[0]["cardstatus"].ToString());
                     if (cardstatus == 2)
                     {
+                        Log.WriteError("此学生已经挂失："+studentInfo);
                         return Error.GUASHIED;//返回已经挂失的标识
                     }
                     string updateStatus = "update hr_employee set cardstatus='2' where empno='" + stuno + "'";
                     int flag = SQLHelper.Update(updateStatus);
                     if (flag <= 0)
                     {
+                        Log.WriteError("变更学生卡状态失效："+studentInfo);
                        return Error.UPDATECARD_ERROR;//返回更新失败的错误信息
                     }
                     string[] param = new string[] { stuno,name,deptname,phyid,cardnum,"无",DateTime.Now.ToLocalTime().ToString()};
@@ -58,11 +62,12 @@ namespace yitiji_ma.controller
                     int flagInsert = SQLHelper.Update(insertBlackName);
                     if (flagInsert <= 0)
                     {
-                        Log.WriteLog("更新黑名单失败：学生姓名->"+name+",学号->"+stuno);
+                        Log.WriteLog("插入黑名单失败：学生姓名->"+name+",学号->"+stuno);
                         return Error.INSERT_BLACKNAME_ERROR;//返回黑名单更新失败
                     }
                     
                 }
+                Log.WriteLog("卡挂失成功："+studentInfo);
                 return Error.GUASHI_SUCCESS;//挂失成功，成功将挂失数据添加到黑名单中
             }
         }

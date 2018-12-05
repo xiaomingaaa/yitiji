@@ -31,10 +31,10 @@ namespace yitiji_ma
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            Test();
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +53,11 @@ namespace yitiji_ma
             g_frm.Show(this);
             g_frm.showMainEvent += delegate { this.Show(); };
             Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Test();
         }
     }
 }

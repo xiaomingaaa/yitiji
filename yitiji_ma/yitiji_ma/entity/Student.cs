@@ -41,7 +41,8 @@ namespace yitiji_ma.entity
         }
         public override string ToString()
         {
-            string temp = "{}";
+            string temp = "{"+"\"姓名\":\""+Name+"\",\"学号\":\""+Stuno+"\",\"新物理卡号\":"+NewPhyid+",\"卡内余额\":"+Money+"}";
+            string basestr= base.ToString();
             return temp;
         }
     }
