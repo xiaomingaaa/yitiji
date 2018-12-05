@@ -102,12 +102,13 @@ namespace yitiji_ma.util
         }
         #endregion
         
-        static byte[] temp = new byte[16];//要写入的16字节存储
+        byte[] temp = new byte[16];//要写入的16字节存储
         //读出数据的字节数组
-        static byte[] readByte = new byte[4];
+        byte[] readByte = new byte[4];
         public long phyid = 0;
-        static IntPtr handle;
-        static StringBuilder output = new StringBuilder(500);
+        IntPtr handle;
+        StringBuilder output;
+        byte[] secrect = new byte[6];
         /// <summary>
         /// 构造0扇区2块的数据
         /// </summary>
@@ -382,6 +383,7 @@ namespace yitiji_ma.util
                 {
                     handle = K720_CommOpen(com);
                 }
+                output = new StringBuilder(200);
                 int sendcard = K720_SendCmd(handle,0,"FC7",3,output);
                 if (sendcard != 0)
                 {
@@ -397,12 +399,17 @@ namespace yitiji_ma.util
                     return Error.DETECT_CARD_ERROR;//寻卡失败
                 }
                 //验证卡扇区密码数据
-                byte[] secret = new byte[6] {0x14,0x70,0x25,0x85,0x67,0x58 };
-                int loadSecret = K720_S50LoadSecKey(handle,0,0,0x30,secret,output);
+                secrect[0] = 0x14;
+                secrect[1] = 0x70;
+                secrect[2] = 0x25;
+                secrect[3] = 0x85;
+                secrect[4] = 0x67;
+                secrect[5] = 0x58;
+                int loadSecret = K720_S50LoadSecKey(handle,0,0,0x30, secrect, output);
                 if (loadSecret != 0)
                 {
                     ReleaseHandle(studentInfo);
-                    Log.WriteError("写卡时0扇区密码验证失败："+studentInfo);
+                    Log.WriteError("写卡时0扇区密码验证失败："+studentInfo+","+loadSecret);
                     return Error.PWD_LOAD_ERROR;//密码验证失败
                 }
                 int readPhy = K720_S50ReadBlock(handle,0,0,0,readByte,output);
@@ -430,7 +437,7 @@ namespace yitiji_ma.util
                     Log.WriteError("卡0扇区块2写入失败");
                     return Error.WRITE_CARD_ERROR;
                 }
-                int loadSecret1 = K720_S50LoadSecKey(handle,0,1,0x30,secret,output);
+                int loadSecret1 = K720_S50LoadSecKey(handle,0,1,0x30, secrect, output);
                 if (loadSecret1 != 0)
                 {
                     ReleaseHandle(studentInfo);

@@ -23,12 +23,14 @@ namespace yitiji_ma
         {
             showMainEvent();
             Hide();
+            this.Dispose();
+            
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
             BukaController buka = new BukaController();
-           Error ex=  buka.Buka(telone.Text.Trim(),teltwo.Text.Trim());
+            Error ex=  buka.Buka(telone.Text.Trim(),teltwo.Text.Trim());
             MessageBox.Show(error.errorMessage(ex));
         }
     }
