@@ -26,6 +26,8 @@ namespace yitiji_ma
 
         private void backBtn_Click(object sender, EventArgs e)
         {
+            telone.Text = "";
+            teltwo.Text = "";
             this.showMainEvent();
             Hide();
         }
@@ -34,6 +36,11 @@ namespace yitiji_ma
         {
             GuashiController guashi=new GuashiController();
             Error ex= guashi.GuaShi(telone.Text.Trim(),teltwo.Text.Trim());
+            if (ex.Equals(Error.GUASHI_SUCCESS))
+            {
+                telone.Text = "";
+                teltwo.Text = "";
+            }
             MessageBox.Show(error.errorMessage(ex));
         }
         

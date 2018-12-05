@@ -21,9 +21,10 @@ namespace yitiji_ma
         //
         private void backBtn_Click(object sender, EventArgs e)
         {
+            telone.Text = "";
+            teltwo.Text = "";
             showMainEvent();
             Hide();
-            this.Dispose();
             
         }
 
@@ -31,6 +32,11 @@ namespace yitiji_ma
         {
             BukaController buka = new BukaController();
             Error ex=  buka.Buka(telone.Text.Trim(),teltwo.Text.Trim());
+            if (ex.Equals(Error.BUKA_SUCCESS) || ex.Equals(Error.UPDATE_INFO_ERROR))
+            {
+                telone.Text = "";
+                teltwo.Text = "";
+            }
             MessageBox.Show(error.errorMessage(ex));
         }
     }

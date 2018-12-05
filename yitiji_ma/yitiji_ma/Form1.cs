@@ -36,23 +36,23 @@ namespace yitiji_ma
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             
         }
-
+        Guashi g_frm = new Guashi();
         private void button1_Click(object sender, EventArgs e)
         {
-            Guashi g_frm = new Guashi();
+            
             g_frm.WindowState = FormWindowState.Maximized;
             g_frm.Show(this);
             g_frm.showMainEvent += delegate { this.Show(); };
-            Hide();
+            //Hide();
         }
-
+        Buka b_frm = new Buka();
         private void button2_Click(object sender, EventArgs e)
         {
-            Buka g_frm = new Buka();
-            g_frm.WindowState = FormWindowState.Maximized;
-            g_frm.Show(this);
-            g_frm.showMainEvent += delegate { this.Show(); };
-            Hide();
+           
+            b_frm.WindowState = FormWindowState.Maximized;
+            b_frm.Show(this);
+            b_frm.showMainEvent += delegate { this.Show(); };
+            //Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
