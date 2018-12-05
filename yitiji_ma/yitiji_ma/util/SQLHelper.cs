@@ -36,6 +36,7 @@ namespace yitiji_ma.util
             finally
             {
                 //关闭数据库连接 
+                cmd.Dispose();
                 conn.Close();
             }
         }
@@ -262,6 +263,9 @@ namespace yitiji_ma.util
 
                 DataTable _dt = new DataTable();
                 myda.Fill(_dt);
+                conn.Close();
+                myda.Dispose();
+                builder.Dispose();
                 return _dt;
             }
         }
