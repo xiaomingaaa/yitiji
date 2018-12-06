@@ -38,7 +38,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::yitiji_ma.Properties.Resources.main_index1;
-            this.pictureBox1.Location = new System.Drawing.Point(366, 39);
+            this.pictureBox1.Location = new System.Drawing.Point(383, 36);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(544, 133);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -50,7 +50,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.button2.BackgroundImage = global::yitiji_ma.Properties.Resources.index_btn_buka;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(815, 231);
+            this.button2.Location = new System.Drawing.Point(823, 231);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(306, 432);
             this.button2.TabIndex = 1;
@@ -62,7 +62,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.button1.BackgroundImage = global::yitiji_ma.Properties.Resources.index_btn_guashi;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(198, 231);
+            this.button1.Location = new System.Drawing.Point(229, 231);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(306, 432);
             this.button1.TabIndex = 0;

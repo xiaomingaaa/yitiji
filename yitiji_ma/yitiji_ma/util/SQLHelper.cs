@@ -255,17 +255,28 @@ namespace yitiji_ma.util
         }
         public static DataTable GetAllResult(string sql)
         {
-            using (SqlConnection conn = new SqlConnection(sqlconstring))
+            using (SqlConnection conn = new SqlConnection())
             {
-                SqlDataAdapter myda = new SqlDataAdapter(sql, conn);
-                SqlCommandBuilder builder = new SqlCommandBuilder(myda);
-                conn.Open();
-
                 DataTable _dt = new DataTable();
-                myda.Fill(_dt);
-                conn.Close();
-                myda.Dispose();
-                builder.Dispose();
+                try
+                {
+                    conn.ConnectionString = sqlconstring;
+                    SqlDataAdapter myda = new SqlDataAdapter(sql, conn);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(myda);
+                    conn.Open();
+
+                    _dt = new DataTable();
+                    myda.Fill(_dt);
+                    conn.Close();
+                    myda.Dispose();
+                    builder.Dispose();
+                    
+                }
+                catch (Exception e)
+                {
+                    conn.Close();
+                    Log.WriteError("SQLHelper获取学生信息出现错误："+e.Message);
+                }
                 return _dt;
             }
         }
