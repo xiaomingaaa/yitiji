@@ -39,7 +39,7 @@ namespace yitiji_ma
             telone.ForeColor = Color.DarkGray;
             teltwo.Text = "亲情号2";
             teltwo.ForeColor = Color.DarkGray;
-            MessageBox.Show(error.errorMessage(ex));
+            ShowBox.ShowMessageBox(error.errorMessage(ex));
         }
 
         private void telone_Leave(object sender, EventArgs e)
@@ -131,6 +131,6 @@ namespace yitiji_ma
                 
             }
             return students;
-        }
+        }        
     }
 }

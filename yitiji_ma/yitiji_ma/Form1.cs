@@ -16,22 +16,11 @@ namespace yitiji_ma
         {
             InitializeComponent();
         }
-        public void Test()
-        {
-            //Config temp = ConfigUtil.getConfig();
-            //MessageBox.Show(temp.ToString());
-            //MessageBox.Show(temp.Host+temp.User+temp.Ledport);
-
-            MessageBox.Show( Log.WriteJsonData("马腾飞","123456",123456789,36.2));
-            //Log.WriteJsonData("马腾飞", "123456", 123456789, 36.2);
-            //Log.WriteError("出现报错信息");
-            //Log.WriteLog("用户操作日志");
-
-        }
+       
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            WinApiUtil.HideTaskList();
+            //WinApiUtil.HideTaskList();
             
         }
         Guashi g_frm = new Guashi();
@@ -55,7 +44,7 @@ namespace yitiji_ma
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Test();
+            //Test();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

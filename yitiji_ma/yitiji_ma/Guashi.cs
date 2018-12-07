@@ -38,14 +38,12 @@ namespace yitiji_ma
         private void submitBtn_Click(object sender, EventArgs e)
         {
             GuashiController guashi=new GuashiController();
-            //MessageBox.Show(stuInfo.SelectedItem.ToString());
             Error ex= guashi.GuaShi(telone.Text.Trim(),teltwo.Text.Trim(),stuInfo.SelectedItem.ToString());
-            
             telone.Text = "亲情号1";
             telone.ForeColor = Color.DarkGray;
             teltwo.Text = "亲情号2";
             teltwo.ForeColor = Color.DarkGray;
-            MessageBox.Show(error.errorMessage(ex));
+            ShowBox.ShowMessageBox(error.errorMessage(ex));
         }
 
         private void telone_Leave(object sender, EventArgs e)

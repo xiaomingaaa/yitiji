@@ -43,7 +43,7 @@ namespace yitiji_ma.controller
                 DataTable table = SQLHelper.GetAllResult(sql);
                 if (table.Rows.Count<=0)
                 {
-                    return Error.NOTEXIST_ERROR;
+                    return Error.NOT_EXIST_GUASHI;
                 }
                 string cardnum = table.Rows[0]["cardnum"].ToString();
                 string phyid = table.Rows[0]["phyid"].ToString();

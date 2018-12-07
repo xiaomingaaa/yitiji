@@ -46,10 +46,10 @@ namespace yitiji_ma.controller
                 string sqlText = "select * from hr_employee where empno='"+stuno+"' and empname='"+name+"'";
                 DataTable table = new DataTable();
                 table = SQLHelper.GetAllResult(sqlText);
-                if (table == null)
+                if (table.Rows.Count<=0)
                 {
                     Log.WriteError("本地数据库不存在此人："+studentInfo);
-                    return Error.NOTEXIST_ERROR;
+                    return Error.NOT_EXIST_BUKA;
                 }
                 int cardStatus =Convert.ToInt32(table.Rows[0]["cardstatus"].ToString());
                 if (cardStatus != 2)

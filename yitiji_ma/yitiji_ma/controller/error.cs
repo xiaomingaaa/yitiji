@@ -26,7 +26,8 @@ namespace yitiji_ma.controller
         SEND_CARD_SUCCESS,
         NOTEXIST_ERROR,
         UPDATE_INFO_ERROR,
-        NOT_EXIST_BUKA
+        NOT_EXIST_BUKA,
+        NOT_EXIST_GUASHI
         
     }
     public class error 
@@ -92,6 +93,9 @@ namespace yitiji_ma.controller
                     break;
                 case Error.NOT_EXIST_BUKA:
                     temp = "补卡缴费信息不存在，请检查是否已经缴费！";
+                    break;
+                case Error.NOT_EXIST_GUASHI:
+                    temp = "请及时缴纳功能费！或学生信息不存在";
                     break;
                 default:
                     temp = "未知错误！";
