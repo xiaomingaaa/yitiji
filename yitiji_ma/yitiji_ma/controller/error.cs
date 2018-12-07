@@ -67,7 +67,7 @@ namespace yitiji_ma.controller
                     temp = "寻卡失败，请检查机器内是否有卡";
                     break;
                 case Error.NOTEXIST_ERROR:
-                    temp = "学生信息不存在！";
+                    temp = "学生信息不存在！或者没有缴纳补卡或者挂失费！";
                     break;
                 case Error.NOTGUASHIED:
                     temp = "此学生卡未挂失！";

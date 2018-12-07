@@ -65,9 +65,10 @@ namespace yitiji_ma
                 teltwo.ForeColor = Color.DarkGray;
             }           
         }
-
+        string flag = "";
         private void telone_Enter(object sender, EventArgs e)
         {
+            flag = "t1";
             if (telone.Text == "亲情号1")
             {
                 telone.Text = "";
@@ -78,6 +79,7 @@ namespace yitiji_ma
 
         private void teltwo_Enter(object sender, EventArgs e)
         {
+            flag = "t2";
             if (teltwo.Text == "亲情号2")
             {
                 teltwo.Text = "";
@@ -112,17 +114,25 @@ namespace yitiji_ma
             string[] students = null;
             if (ValidateUtil.ValidateTelNumber(str1) && ValidateUtil.ValidateTelNumber(str2))
             {
-                Dictionary<string, object>[] stus = HttpUtil.getStudentInfo(str1, str2);
-                if (stus == null)
-                {                    
-                    return null;
-                }
-                //MessageBox.Show(stus.Length.ToString());
-                students = new string[stus.Length];
-                for (int i = 0; i < stus.Length; i++)
+                try
                 {
-                    students[i] = stus[i]["name"].ToString() + "|" + stus[i]["stuno2"].ToString();
+                    Dictionary<string, object>[] stus = HttpUtil.getStudentInfo(str1, str2);
+                    if (stus == null)
+                    {
+                        return null;
+                    }
+                    //MessageBox.Show(stus.Length.ToString());
+                    students = new string[stus.Length];
+                    for (int i = 0; i < stus.Length; i++)
+                    {
+                        students[i] = stus[i]["name"].ToString() + "|" + stus[i]["stuno2"].ToString();
+                    }
                 }
+                catch (Exception e)
+                {
+                    Log.WriteError("获取学生信息出现错误："+e.Message);
+                }
+               
 
 
             }
@@ -143,6 +153,21 @@ namespace yitiji_ma
                 stuInfo.Items.Clear();
                 stuInfo.Items.Add("(无学生信息)");
                 stuInfo.SelectedIndex = 0;
+            }
+        }
+        private void KeyBoardBtn_Click(object sender, EventArgs e)
+        {
+            Button btnTemp = (Button)sender;
+            string digital = btnTemp.Text;
+            if (flag=="t1")
+            {
+                telone.Focus();
+                telone.Text += digital;
+            }
+            else if(flag=="t2")
+            {
+                teltwo.Focus();
+                teltwo.Text += digital;
             }
         }
     }

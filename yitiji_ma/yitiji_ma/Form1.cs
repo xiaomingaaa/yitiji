@@ -31,9 +31,7 @@ namespace yitiji_ma
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
-            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            WinApiUtil.HideTaskList();
             
         }
         Guashi g_frm = new Guashi();
@@ -58,6 +56,11 @@ namespace yitiji_ma
         private void button3_Click(object sender, EventArgs e)
         {
             Test();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            WinApiUtil.ShowTaskList();
         }
     }
 }

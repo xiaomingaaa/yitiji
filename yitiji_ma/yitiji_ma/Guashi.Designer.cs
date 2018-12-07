@@ -35,7 +35,21 @@
             this.submitBtn = new System.Windows.Forms.Button();
             this.stuInfo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.KeyBoard = new System.Windows.Forms.Panel();
+            this.btn1 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.KeyBoard.SuspendLayout();
             this.SuspendLayout();
             // 
             // telone
@@ -118,6 +132,148 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "选择学生:";
             // 
+            // KeyBoard
+            // 
+            this.KeyBoard.Controls.Add(this.button10);
+            this.KeyBoard.Controls.Add(this.button9);
+            this.KeyBoard.Controls.Add(this.button8);
+            this.KeyBoard.Controls.Add(this.button7);
+            this.KeyBoard.Controls.Add(this.button6);
+            this.KeyBoard.Controls.Add(this.button5);
+            this.KeyBoard.Controls.Add(this.button4);
+            this.KeyBoard.Controls.Add(this.button3);
+            this.KeyBoard.Controls.Add(this.button2);
+            this.KeyBoard.Controls.Add(this.button1);
+            this.KeyBoard.Controls.Add(this.btn2);
+            this.KeyBoard.Controls.Add(this.btn1);
+            this.KeyBoard.Location = new System.Drawing.Point(528, 545);
+            this.KeyBoard.Name = "KeyBoard";
+            this.KeyBoard.Size = new System.Drawing.Size(261, 173);
+            this.KeyBoard.TabIndex = 7;
+            this.KeyBoard.Visible = false;
+            // 
+            // btn1
+            // 
+            this.btn1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn1.Location = new System.Drawing.Point(3, 0);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(51, 53);
+            this.btn1.TabIndex = 0;
+            this.btn1.Text = "1";
+            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Click += new System.EventHandler(this.KeyBoardBtn_Click);
+            // 
+            // btn2
+            // 
+            this.btn2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn2.Location = new System.Drawing.Point(71, 0);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(51, 53);
+            this.btn2.TabIndex = 1;
+            this.btn2.Text = "2";
+            this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Click += new System.EventHandler(this.KeyBoardBtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(138, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 53);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "3";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.Location = new System.Drawing.Point(3, 117);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(51, 53);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "7";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.Location = new System.Drawing.Point(3, 59);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(51, 53);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "4";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Location = new System.Drawing.Point(71, 59);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(51, 53);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "5";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.Location = new System.Drawing.Point(138, 59);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(51, 53);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "6";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button6.Location = new System.Drawing.Point(71, 117);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(51, 53);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "8";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button7.Location = new System.Drawing.Point(138, 117);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(51, 53);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "9";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button8.Location = new System.Drawing.Point(204, 0);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(51, 53);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "<-";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button9.Location = new System.Drawing.Point(204, 59);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(51, 53);
+            this.button9.TabIndex = 10;
+            this.button9.Text = "0";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button10.Location = new System.Drawing.Point(204, 117);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(51, 53);
+            this.button10.TabIndex = 11;
+            this.button10.Text = ".";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
             // Guashi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -125,6 +281,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.KeyBoard);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.stuInfo);
             this.Controls.Add(this.pictureBox1);
@@ -140,6 +297,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Guashi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.KeyBoard.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +312,18 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox stuInfo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel KeyBoard;
+        private System.Windows.Forms.Button btn2;
+        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
