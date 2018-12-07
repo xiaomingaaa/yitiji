@@ -15,7 +15,7 @@ namespace yitiji_ma.controller
     class GuashiController
     {
         
-        public Error GuaShi(string tel1,string tel2) 
+        public Error GuaShi(string tel1,string tel2,string info) 
         {
             if (!ValidateUtil.ValidateTelNumber(tel1) && !ValidateUtil.ValidateTelNumber(tel2))
             {
@@ -24,13 +24,14 @@ namespace yitiji_ma.controller
             else 
             {
                 
-                Dictionary<string,string> stuinfo= HttpUtil.getStudentInfo(tel1,tel2);
-                if (stuinfo == null)
+                
+                if (info == "(无学生信息)")
                 {
-                    return Error.HTTP_ERROR;//获取的http数据出现错误了
+                    return Error.NOTEXIST_ERROR;//此学生信息不存在
                 }
-                string stuno=stuinfo["stuno"];
-                string name=stuinfo["name"];
+                string[] ss = info.Split('|');
+                string stuno=ss[1];
+                string name=ss[0];
                 string studentInfo = string.Format("学生姓名：{0},学生学号：{1}",name,stuno);
                 if ((stuno == null || stuno == "")|(name==null||name==""))
                 {

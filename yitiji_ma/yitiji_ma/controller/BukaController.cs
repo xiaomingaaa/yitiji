@@ -13,11 +13,15 @@ namespace yitiji_ma.controller
     /// </summary>
     class BukaController
     {
-        public Error Buka(string tel1,string tel2)
+        public Error Buka(string tel1,string tel2,string info)
         {
             if (!ValidateUtil.ValidateTelNumber(tel1) || !ValidateUtil.ValidateTelNumber(tel2))
             {
                 return Error.VALIDATE_ERROR;//用户输入验证错误
+            }
+            else if(info== "(无此人补卡缴费信息)")
+            {
+                return Error.NOT_EXIST_BUKA;
             }
             else
             {
@@ -29,8 +33,9 @@ namespace yitiji_ma.controller
                 //}
                 //string stuno = stuinfo["stuno"];
                 //string name = stuinfo["name"];
-                string stuno = "T567444003046";
-                string name = "杨茫";
+                string[] ss = info.Split('|');
+                string stuno = ss[1];
+                string name =ss[0];
                 string studentInfo = string.Format("学生姓名：{0},学生学号：{1}", name, stuno);
                 
                 if ((stuno == null || stuno == "") | (name == null || name == ""))

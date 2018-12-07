@@ -25,7 +25,8 @@ namespace yitiji_ma.controller
         READ_PHYID_ERROR,
         SEND_CARD_SUCCESS,
         NOTEXIST_ERROR,
-        UPDATE_INFO_ERROR
+        UPDATE_INFO_ERROR,
+        NOT_EXIST_BUKA
         
     }
     public class error 
@@ -88,6 +89,9 @@ namespace yitiji_ma.controller
                     break;
                 case Error.WRITE_CARD_ERROR:
                     temp = "写卡失败！";
+                    break;
+                case Error.NOT_EXIST_BUKA:
+                    temp = "补卡缴费信息不存在，请检查是否已经缴费！";
                     break;
                 default:
                     temp = "未知错误！";

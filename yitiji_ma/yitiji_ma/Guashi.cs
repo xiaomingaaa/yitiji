@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using yitiji_ma.controller;
+using yitiji_ma.util;
 namespace yitiji_ma
 {
     public partial class Guashi : Form
@@ -37,7 +38,9 @@ namespace yitiji_ma
         private void submitBtn_Click(object sender, EventArgs e)
         {
             GuashiController guashi=new GuashiController();
-            Error ex= guashi.GuaShi(telone.Text.Trim(),teltwo.Text.Trim());
+            MessageBox.Show(stuInfo.SelectedItem.ToString());
+            Error ex= guashi.GuaShi(telone.Text.Trim(),teltwo.Text.Trim(),stuInfo.SelectedItem.ToString());
+            
             telone.Text = "亲情号1";
             telone.ForeColor = Color.DarkGray;
             teltwo.Text = "亲情号2";
@@ -79,6 +82,67 @@ namespace yitiji_ma
             {
                 teltwo.Text = "";
                 teltwo.ForeColor = Color.White;
+            }
+        }
+
+        private void teltwo_TextChanged(object sender, EventArgs e)
+        {
+            string[] students = checkInput(telone.Text.Trim(), teltwo.Text.Trim());
+            if (students != null)
+            {
+                stuInfo.Items.RemoveAt(0);
+                stuInfo.Items.AddRange(students);
+                stuInfo.SelectedIndex = 0;
+            }
+            else
+            {
+                stuInfo.Items.Clear();
+                stuInfo.Items.Add("(无学生信息)");
+                stuInfo.SelectedIndex = 0;
+            }
+        }
+        /// <summary>
+        /// 通过电话号码查找出学生信息表
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns></returns>
+        private string[] checkInput(string str1, string str2)
+        {
+            string[] students = null;
+            if (ValidateUtil.ValidateTelNumber(str1) && ValidateUtil.ValidateTelNumber(str2))
+            {
+                Dictionary<string, object>[] stus = HttpUtil.getStudentInfo(str1, str2);
+                if (stus == null)
+                {                    
+                    return null;
+                }
+                //MessageBox.Show(stus.Length.ToString());
+                students = new string[stus.Length];
+                for (int i = 0; i < stus.Length; i++)
+                {
+                    students[i] = stus[i]["name"].ToString() + "|" + stus[i]["stuno2"].ToString();
+                }
+
+
+            }
+            return students;
+        }
+
+        private void telone_TextChanged(object sender, EventArgs e)
+        {
+            string[] students = checkInput(telone.Text.Trim(), teltwo.Text.Trim());
+            if (students != null)
+            {
+                stuInfo.Items.RemoveAt(0);
+                stuInfo.Items.AddRange(students);
+                stuInfo.SelectedIndex = 0;
+            }
+            else
+            {
+                stuInfo.Items.Clear();
+                stuInfo.Items.Add("(无学生信息)");
+                stuInfo.SelectedIndex = 0;
             }
         }
     }
