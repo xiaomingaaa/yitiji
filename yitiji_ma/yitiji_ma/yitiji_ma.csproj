@@ -85,6 +85,7 @@
     <Compile Include="util\Log.cs" />
     <Compile Include="util\SQLHelper.cs" />
     <Compile Include="util\ValidateUtil.cs" />
+    <Compile Include="util\WinApiUtil.cs" />
     <EmbeddedResource Include="Buka.resx">
       <DependentUpon>Buka.cs</DependentUpon>
     </EmbeddedResource>
