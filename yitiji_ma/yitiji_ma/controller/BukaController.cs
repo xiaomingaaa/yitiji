@@ -44,6 +44,7 @@ namespace yitiji_ma.controller
                     return Error.HTTP_NONE;//没有学生信息
                 }
                 string sqlText = "select * from hr_employee where empno='"+stuno+"' and empname='"+name+"'";
+                string sqlMaxStuno = "select max(cardnum) from hr_employee;";
                 DataTable table = new DataTable();
                 table = SQLHelper.GetAllResult(sqlText);
                 if (table.Rows.Count<=0)
@@ -57,7 +58,13 @@ namespace yitiji_ma.controller
                     Log.WriteError("此卡未挂失："+studentInfo);
                     return Error.NOTGUASHIED;//未挂失
                 }
-                int cardnum = Convert.ToInt32(table.Rows[0]["cardnum"].ToString());
+                object cardno = SQLHelper.GetOneResult(sqlMaxStuno);
+                int cardnum = 0;
+                if (cardno != null)
+                {
+                    cardnum = Convert.ToInt32(cardno.ToString())+1;
+                }
+                Log.WriteData("卡号为："+cardnum);
                 string flag = table.Rows[0]["empcard"].ToString().Trim();
                 double money = Convert.ToDouble(table.Rows[0]["empje01"].ToString());
                 byte lx = GetType(flag);
@@ -73,7 +80,8 @@ namespace yitiji_ma.controller
                 Log.WriteJsonData(name, stuno, operater.phyid, money);
                 //更新本地库信息
                 string updateOperaterSql = string.Format("insert into dlc_operation (empno,empname,carduid,created,operation,jine)values('{0}','{1}','{2}','{3}','{4}','{5}');",stuno,name,cardnum,DateTime.Now.ToLocalTime().ToString(),"buka",money);
-                string updatePhyidSql = string.Format("update hr_employee set phyid='{0}',cardstatus='0',cardendrq='{1}' where empno='{2}';",operater.phyid,DateTime.Now.ToString("yyyy-MM-dd"),stuno);
+                string updatePhyidSql = string.Format("update hr_employee set phyid='{0}',cardstatus='0',cardendrq='{1}',cardnum='{3}' where empno='{2}';",operater.phyid,DateTime.Now.ToString("yyyy-MM-dd"),stuno,cardnum);
+                //string delete = "delete from hr_blackname where empno='"+stuno+"';";
                 int updateRow = SQLHelper.Update(updateOperaterSql+updatePhyidSql);
                 if (updateRow <= 0)
                 {

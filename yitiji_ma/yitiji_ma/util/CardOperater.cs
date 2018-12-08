@@ -243,10 +243,10 @@ namespace yitiji_ma.util
                 hexmoney = "0" + hexmoney;
             }
             hexmoney = hexmoney[6] + "" + hexmoney[7] + "" + hexmoney[4] + "" + hexmoney[5] + "" + hexmoney[2] + "" + hexmoney[3] + "" + hexmoney[0] + "" + hexmoney[1];
-            int tempMoney = 0;
+            Int64 tempMoney = 0;
             for (int i = 0; i < 8; i++)
             {
-                int hexValue = Convert.ToInt32(getHexValue(hexmoney[i]));
+                Int64 hexValue = getHexValue(hexmoney[i]);
                 tempMoney = tempMoney + hexValue * Convert.ToInt32(Math.Pow(16, 7 - i));
             }
 
@@ -263,9 +263,9 @@ namespace yitiji_ma.util
             hexmoney = Convert.ToString(tempMoney, 16);
             for (int i = hexmoney.Length; i < 8; i++)
             {
-                hexmoney = "0" + hexmoney;
+                hexmoney = "F" + hexmoney;
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 4; i < 8; i++)
             {
                 byte temp = Convert.ToByte(hexmoney.Substring(i * 2, 2), 16);
                 blockData.Add(temp);
@@ -445,6 +445,12 @@ namespace yitiji_ma.util
                     return Error.PWD_LOAD_ERROR;//密码验证失败
                 }
                 temp = getSecondSector(money);
+                string hex = "";
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    hex = hex + Convert.ToString(temp[i],16)+"\t";
+                }
+                Log.WriteData(hex);
                 int writeMoney = K720_S50WriteBlock(handle,0,1,0,temp,output);
                 if (writeMoney != 0)
                 {

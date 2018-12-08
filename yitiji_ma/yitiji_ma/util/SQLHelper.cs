@@ -31,7 +31,10 @@ namespace yitiji_ma.util
             }
             catch (Exception ex)
             {
-                throw ex;
+                conn.Close();
+                conn.Dispose();
+                Log.WriteError("SQLHelper执行更新语句时出现错误："+ex.Message);
+                return 0;
             }
             finally
             {
@@ -59,12 +62,17 @@ namespace yitiji_ma.util
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.WriteError("SQLHelper执行查找最大卡号时出现错误："+ex.Message);
+                conn.Close();
+                conn.Dispose();
+                return null;
+                
             }
             finally
             {
                 //关闭数据库连接 
                 conn.Close();
+                conn.Dispose();
             }
         }
 
