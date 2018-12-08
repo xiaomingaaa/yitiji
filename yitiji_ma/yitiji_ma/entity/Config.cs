@@ -15,6 +15,7 @@ namespace yitiji_ma.entity
         private string ledport;//写卡吐卡端口
         private int startSectoin;//加密扇区
         private string initpwd;
+        private int cardtype;//金额卡类型
         public string Host
         {
             get { return host; }
@@ -52,6 +53,7 @@ namespace yitiji_ma.entity
         }
 
         public string Initpwd { get => initpwd; set => initpwd = value; }
+        public int Cardtype { get => cardtype; set => cardtype = value; }
 
         public override string ToString()
         {

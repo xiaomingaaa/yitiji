@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using yitiji_ma.controller;
+using yitiji_ma.entity;
 namespace yitiji_ma.util
 {
     /// <summary>
@@ -276,7 +277,16 @@ namespace yitiji_ma.util
                 byte temp = Convert.ToByte(hextemp.Substring(i * 2, 2), 16);
                 blockData.Add(temp);
             }
-            string crc = "04FB04FB";
+            string crc = "05FA05FA";
+            int cardtype = ConfigUtil.getConfig().Cardtype;
+            if (cardtype == 1)
+            {
+                crc = "04FB04FB";
+            }
+            else
+            {
+                crc = "05FA05FA";
+            }
             for (int i = 0; i < 4; i++)
             {
                 byte temp = Convert.ToByte(crc.Substring(i * 2, 2), 16);

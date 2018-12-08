@@ -21,7 +21,7 @@ namespace yitiji_ma
         private void Form1_Load(object sender, EventArgs e)
         {
             //WinApiUtil.HideTaskList();
-            
+            MessageBox.Show(ConfigUtil.getConfig().Cardtype.ToString());
         }
         Guashi g_frm = new Guashi();
         private void button1_Click(object sender, EventArgs e)
