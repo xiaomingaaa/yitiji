@@ -44,6 +44,15 @@ namespace yitiji_ma
             teltwo.Text = "亲情号2";
             teltwo.ForeColor = Color.DarkGray;
             ShowBox.ShowMessageBox(error.errorMessage(ex));
+            if (ex == Error.GUASHI_SUCCESS)
+            {
+                telone.Text = "亲情号1";
+                telone.ForeColor = Color.DarkGray;
+                teltwo.Text = "亲情号2";
+                teltwo.ForeColor = Color.DarkGray;
+                this.showMainEvent();
+                Hide();
+            }
         }
 
         private void telone_Leave(object sender, EventArgs e)

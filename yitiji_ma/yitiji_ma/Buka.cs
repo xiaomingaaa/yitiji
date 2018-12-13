@@ -22,13 +22,13 @@ namespace yitiji_ma
         //
         private void backBtn_Click(object sender, EventArgs e)
         {
+
             telone.Text = "亲情号1";
             telone.ForeColor = Color.DarkGray;
             teltwo.Text = "亲情号2";
             teltwo.ForeColor = Color.DarkGray;
             showMainEvent();
             Hide();
-            
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
@@ -40,6 +40,15 @@ namespace yitiji_ma
             teltwo.Text = "亲情号2";
             teltwo.ForeColor = Color.DarkGray;
             ShowBox.ShowMessageBox(error.errorMessage(ex));
+            if (ex == Error.BUKA_SUCCESS||ex==Error.UPDATE_INFO_ERROR)
+            {
+                telone.Text = "亲情号1";
+                telone.ForeColor = Color.DarkGray;
+                teltwo.Text = "亲情号2";
+                teltwo.ForeColor = Color.DarkGray;
+                showMainEvent();
+                Hide();
+            }
         }
 
         private void telone_Leave(object sender, EventArgs e)

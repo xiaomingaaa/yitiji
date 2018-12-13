@@ -73,9 +73,19 @@ namespace yitiji_ma.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap btn_submit {
+        internal static System.Drawing.Bitmap buka {
             get {
-                object obj = ResourceManager.GetObject("btn-submit", resourceCulture);
+                object obj = ResourceManager.GetObject("buka", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap guashi {
+            get {
+                object obj = ResourceManager.GetObject("guashi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
