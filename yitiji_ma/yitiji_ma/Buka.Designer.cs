@@ -36,7 +36,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.submitBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // telone
@@ -44,7 +46,7 @@
             this.telone.BackColor = System.Drawing.SystemColors.InfoText;
             this.telone.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.telone.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.telone.Location = new System.Drawing.Point(511, 214);
+            this.telone.Location = new System.Drawing.Point(511, 173);
             this.telone.Name = "telone";
             this.telone.Size = new System.Drawing.Size(387, 62);
             this.telone.TabIndex = 0;
@@ -58,7 +60,7 @@
             this.teltwo.BackColor = System.Drawing.SystemColors.InfoText;
             this.teltwo.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.teltwo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.teltwo.Location = new System.Drawing.Point(511, 325);
+            this.teltwo.Location = new System.Drawing.Point(511, 281);
             this.teltwo.Name = "teltwo";
             this.teltwo.Size = new System.Drawing.Size(387, 62);
             this.teltwo.TabIndex = 1;
@@ -75,7 +77,7 @@
             this.stuInfo.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.stuInfo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.stuInfo.FormattingEnabled = true;
-            this.stuInfo.Location = new System.Drawing.Point(613, 425);
+            this.stuInfo.Location = new System.Drawing.Point(613, 383);
             this.stuInfo.Name = "stuInfo";
             this.stuInfo.Size = new System.Drawing.Size(285, 37);
             this.stuInfo.TabIndex = 5;
@@ -84,7 +86,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(502, 431);
+            this.label1.Location = new System.Drawing.Point(502, 393);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 21);
             this.label1.TabIndex = 6;
@@ -93,7 +95,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::yitiji_ma.Properties.Resources.main_guashi11;
-            this.pictureBox1.Location = new System.Drawing.Point(456, 51);
+            this.pictureBox1.Location = new System.Drawing.Point(456, 31);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(465, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -103,7 +105,7 @@
             // submitBtn
             // 
             this.submitBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("submitBtn.BackgroundImage")));
-            this.submitBtn.Location = new System.Drawing.Point(456, 498);
+            this.submitBtn.Location = new System.Drawing.Point(456, 465);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(180, 60);
             this.submitBtn.TabIndex = 3;
@@ -113,12 +115,22 @@
             // backBtn
             // 
             this.backBtn.BackgroundImage = global::yitiji_ma.Properties.Resources.btn_return;
-            this.backBtn.Location = new System.Drawing.Point(791, 498);
+            this.backBtn.Location = new System.Drawing.Point(796, 465);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(180, 60);
             this.backBtn.TabIndex = 2;
             this.backBtn.UseVisualStyleBackColor = true;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::yitiji_ma.Properties.Resources.tishi;
+            this.pictureBox2.Location = new System.Drawing.Point(147, 556);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1143, 172);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
             // 
             // Buka
             // 
@@ -126,7 +138,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1350, 706);
+            this.ClientSize = new System.Drawing.Size(1350, 749);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.stuInfo);
             this.Controls.Add(this.pictureBox1);
@@ -140,6 +153,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +168,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox stuInfo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

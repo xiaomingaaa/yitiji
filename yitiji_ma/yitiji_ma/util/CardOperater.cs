@@ -197,11 +197,15 @@ namespace yitiji_ma.util
             }
             date = hexyear + hexmonth + hexday;
             byte[] byteDate = new byte[3];
-            for (int i = 0; i < 3; i++)
-            {
-                byteDate[i] = Convert.ToByte(date.Substring(i * 2, 2), 16);
-                blockData.Add(byteDate[i]);
-            }
+            blockData.Add(0x28);
+            blockData.Add(0x12);
+            blockData.Add(0x13);
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    //byteDate[i] = Convert.ToByte(date.Substring(i * 2, 2), 16);
+            //    byteDate[i] = 0xff;
+            //    blockData.Add(byteDate[i]);
+            //}
             blockData.Add(0x00);
             blockData.Add(0x00);
             int length = 8;

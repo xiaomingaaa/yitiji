@@ -99,7 +99,7 @@ namespace yitiji_ma
             else
             {
                 stuInfo.Items.Clear();
-                stuInfo.Items.Add("(无此人补卡缴费信息)");
+                stuInfo.Items.Add("无此人补卡缴费信息");
                 stuInfo.SelectedIndex = 0;
             }
         }
@@ -116,7 +116,7 @@ namespace yitiji_ma
             else
             {
                 stuInfo.Items.Clear();
-                stuInfo.Items.Add("(无此人补卡缴费信息)");
+                stuInfo.Items.Add("无此人补卡缴费信息");
                 stuInfo.SelectedIndex = 0;
             }
         }

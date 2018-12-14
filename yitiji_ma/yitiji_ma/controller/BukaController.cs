@@ -19,7 +19,7 @@ namespace yitiji_ma.controller
             {
                 return Error.VALIDATE_ERROR;//用户输入验证错误
             }
-            else if(info== "(无此人补卡缴费信息)")
+            else if(info== "无此人补卡缴费信息")
             {
                 return Error.NOT_EXIST_BUKA;
             }
@@ -80,7 +80,7 @@ namespace yitiji_ma.controller
                 Log.WriteJsonData(name, stuno, operater.phyid, money);
                 //更新本地库信息
                 string updateOperaterSql = string.Format("insert into dlc_operation (empno,empname,carduid,created,operation,jine)values('{0}','{1}','{2}','{3}','{4}','{5}');",stuno,name,cardnum,DateTime.Now.ToLocalTime().ToString(),"buka",money);
-                string updatePhyidSql = string.Format("update hr_employee set phyid='{0}',cardstatus='0',cardendrq='{1}',cardnum='{3}' where empno='{2}';",operater.phyid,DateTime.Now.ToString("yyyy-MM-dd"),stuno,cardnum);
+                string updatePhyidSql = string.Format("update hr_employee set phyid='{0}',cardstatus='0',cardendrq='{1}',cardnum='{3}' where empno='{2}';",operater.phyid,DateTime.Now.AddYears(10).ToString("yyyy-MM-dd"),stuno,cardnum);
                 //string delete = "delete from hr_blackname where empno='"+stuno+"';";
                 int updateRow = SQLHelper.Update(updateOperaterSql+updatePhyidSql);
                 if (updateRow <= 0)

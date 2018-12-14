@@ -136,6 +136,7 @@
     <Content Include="images\index-btn-guashi.png" />
     <Content Include="images\index-btn-quancun.png" />
     <Content Include="images\main-guashi.png" />
+    <Content Include="images\tishi.png" />
     <None Include="images\main-guashi1.png" />
     <Content Include="images\main-index.jpg" />
     <Content Include="images\main-quancun.jpg" />

@@ -30,11 +30,13 @@
         {
             this.telone = new System.Windows.Forms.TextBox();
             this.teltwo = new System.Windows.Forms.TextBox();
+            this.stuInfo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.submitBtn = new System.Windows.Forms.Button();
-            this.stuInfo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +67,37 @@
             this.teltwo.TextChanged += new System.EventHandler(this.teltwo_TextChanged);
             this.teltwo.Enter += new System.EventHandler(this.teltwo_Enter);
             this.teltwo.Leave += new System.EventHandler(this.teltwo_Leave);
+            // 
+            // stuInfo
+            // 
+            this.stuInfo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stuInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stuInfo.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.stuInfo.FormattingEnabled = true;
+            this.stuInfo.Location = new System.Drawing.Point(596, 415);
+            this.stuInfo.Name = "stuInfo";
+            this.stuInfo.Size = new System.Drawing.Size(280, 37);
+            this.stuInfo.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(485, 421);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 21);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "选择学生:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::yitiji_ma.Properties.Resources.tishi;
+            this.pictureBox2.Location = new System.Drawing.Point(117, 565);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1143, 172);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -97,27 +130,6 @@
             this.submitBtn.UseVisualStyleBackColor = true;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
-            // stuInfo
-            // 
-            this.stuInfo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stuInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stuInfo.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.stuInfo.FormattingEnabled = true;
-            this.stuInfo.Location = new System.Drawing.Point(596, 415);
-            this.stuInfo.Name = "stuInfo";
-            this.stuInfo.Size = new System.Drawing.Size(280, 37);
-            this.stuInfo.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(485, 421);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 21);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "选择学生:";
-            // 
             // Guashi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -125,6 +137,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.stuInfo);
             this.Controls.Add(this.pictureBox1);
@@ -139,6 +152,7 @@
             this.Text = "Guashi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Guashi_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -154,5 +168,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox stuInfo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
