@@ -17,7 +17,11 @@ namespace yitiji_ma.controller
         
         public Error GuaShi(string tel1,string tel2,string info) 
         {
-            if (!ValidateUtil.ValidateTelNumber(tel1) && !ValidateUtil.ValidateTelNumber(tel2))
+            if (tel1 == tel2)
+            {
+                return Error.TEL_SAME;
+            }
+            else if (!ValidateUtil.ValidateTelNumber(tel1) && !ValidateUtil.ValidateTelNumber(tel2))
             {
                 return Error.VALIDATE_ERROR;//返回验证错误
             }

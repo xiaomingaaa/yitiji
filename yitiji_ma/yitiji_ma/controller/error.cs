@@ -27,7 +27,8 @@ namespace yitiji_ma.controller
         NOTEXIST_ERROR,
         UPDATE_INFO_ERROR,
         NOT_EXIST_BUKA,
-        NOT_EXIST_GUASHI
+        NOT_EXIST_GUASHI,
+        TEL_SAME//输入的亲情电话相同
         
     }
     public class error 
@@ -96,6 +97,9 @@ namespace yitiji_ma.controller
                     break;
                 case Error.NOT_EXIST_GUASHI:
                     temp = "请及时缴纳功能费！或学生信息不存在";
+                    break;
+                case Error.TEL_SAME:
+                    temp = "请输入不同的亲情号吗！";
                     break;
                 default:
                     temp = "未知错误！";

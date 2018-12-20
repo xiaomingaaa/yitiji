@@ -281,16 +281,74 @@ namespace yitiji_ma.util
                 byte temp = Convert.ToByte(hextemp.Substring(i * 2, 2), 16);
                 blockData.Add(temp);
             }
+            string crc = "04FB04FB";
+            //string crc = "05FA05FA";
+            //int cardtype = ConfigUtil.getConfig().Cardtype;
+            //if (cardtype == 1)
+            //{
+            //    crc = "04FB04FB";
+            //}
+            //else
+            //{
+            //    crc = "05FA05FA";
+            //}
+            for (int i = 0; i < 4; i++)
+            {
+                byte temp = Convert.ToByte(crc.Substring(i * 2, 2), 16);
+                blockData.Add(temp);
+            }
+            return blockData.ToArray();
+        }
+        private byte[] getSecondSector2(double money)
+        {
+            List<byte> blockData = new List<byte>();
+            //金额
+            int moneytemp = Convert.ToInt32(money * 100);
+
+            //金额的16进制字符串表示
+            string hexmoney = Convert.ToString(moneytemp, 16);
+
+
+
+            for (int i = hexmoney.Length; i < 8; i++)
+            {
+                hexmoney = "0" + hexmoney;
+            }
+            hexmoney = hexmoney[6] + "" + hexmoney[7] + "" + hexmoney[4] + "" + hexmoney[5] + "" + hexmoney[2] + "" + hexmoney[3] + "" + hexmoney[0] + "" + hexmoney[1];
+            Int64 tempMoney = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                Int64 hexValue = getHexValue(hexmoney[i]);
+                tempMoney = tempMoney + hexValue * Convert.ToInt32(Math.Pow(16, 7 - i));
+            }
+
+
+            //添加金额 原码
+            for (int i = 0; i < 4; i++)
+            {
+                byte temp = Convert.ToByte(hexmoney.Substring(i * 2, 2), 16);
+                blockData.Add(temp);
+            }
+            string hextemp = hexmoney;
+            //反码
+            tempMoney = ~tempMoney;
+            hexmoney = Convert.ToString(tempMoney, 16);
+            for (int i = hexmoney.Length; i < 8; i++)
+            {
+                hexmoney = "F" + hexmoney;
+            }
+            for (int i = 4; i < 8; i++)
+            {
+                byte temp = Convert.ToByte(hexmoney.Substring(i * 2, 2), 16);
+                blockData.Add(temp);
+            }
+            //原码
+            for (int i = 0; i < 4; i++)
+            {
+                byte temp = Convert.ToByte(hextemp.Substring(i * 2, 2), 16);
+                blockData.Add(temp);
+            }
             string crc = "05FA05FA";
-            int cardtype = ConfigUtil.getConfig().Cardtype;
-            if (cardtype == 1)
-            {
-                crc = "04FB04FB";
-            }
-            else
-            {
-                crc = "05FA05FA";
-            }
             for (int i = 0; i < 4; i++)
             {
                 byte temp = Convert.ToByte(crc.Substring(i * 2, 2), 16);
@@ -470,6 +528,14 @@ namespace yitiji_ma.util
                 {
                     ReleaseHandle(studentInfo);
                     Log.WriteError("卡写金额失败："+studentInfo);
+                    return Error.WRITE_CARD_ERROR;
+                }
+                temp = getSecondSector2(money);
+                int writeBukaMoney = K720_S50WriteBlock(handle,0,1,1,temp,output);
+                if (writeBukaMoney != 0)
+                {
+                    ReleaseHandle(studentInfo);
+                    Log.WriteError("卡写补贴金额失败：" + studentInfo);
                     return Error.WRITE_CARD_ERROR;
                 }
                 int sendcard1 = K720_SendCmd(handle,0,"FC0",3,output);
