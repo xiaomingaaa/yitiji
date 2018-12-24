@@ -76,5 +76,54 @@ namespace yitiji_ma.util
             }            
             return temp;
         }
+        private static Stream GetStreamFromWaterInfo(string stuno,string schoolid,string newphyid,string newcardno,string actionUrl)
+        {
+         
+            HttpContent stunoContent = new StringContent(stuno);
+            HttpContent schoolidContent = new StringContent(schoolid);
+            HttpContent newphyidContent = new StringContent(newphyid);
+            HttpContent newcardnoContent = new StringContent(newcardno);
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+                formData.Add(stunoContent, "studentno");
+                formData.Add(schoolidContent, "schoolid");
+                formData.Add(newphyidContent,"newphyid");
+                formData.Add(newcardnoContent,"newcardno");
+                var response = client.PostAsync(actionUrl, formData).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    Log.WriteError("网络错误，请检查网络！状态码：" + response.IsSuccessStatusCode);
+                    return null;
+                }
+
+                return response.Content.ReadAsStreamAsync().Result;
+            }
+            
+        }
+        //更新餐卡数据
+        public static string GetBackData(string stuno, string schoolid, string newphyid, string newcardno)
+        {
+            string actionUrl = "HTTP://api.jxqwt.cn/apiuser/stuname";
+            string temp = null;
+            Stream info = GetStreamFromWaterInfo(stuno, schoolid, newphyid, newcardno, actionUrl);
+            if (info != null)
+            {
+                info.Position = 0;
+                StreamReader reader = new StreamReader(info);
+                string result = reader.ReadToEnd();
+                Dictionary<string, object> obj = JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
+                if (obj.ContainsKey("status"))
+                {
+                    if (obj["status"].ToString() == "0")
+                    {
+                        temp = obj["info"].ToString();
+                        //int ret_stutus = stu_info["stuno"], stu_info["name"];
+
+                    }
+                }
+            }
+            return temp;
+        }
     }
 }

@@ -87,14 +87,29 @@ namespace yitiji_ma.controller
                 string updatePhyidSql = string.Format("update hr_employee set phyid='{0}',cardstatus='0',cardendrq='{1}',cardnum='{3}' where empno='{2}';",operater.phyid,DateTime.Now.AddYears(10).ToString("yyyy-MM-dd"),stuno,cardnum);
                 //string delete = "delete from hr_blackname where empno='"+stuno+"';";
                 int updateRow = SQLHelper.Update(updateOperaterSql+updatePhyidSql);
+                Task<bool> isUpdate= PostCardInfoAsync(stuno,config.School_id.ToString(),operater.phyid.ToString(),cardnum.ToString());
                 if (updateRow <= 0)
                 {
                     Log.WriteError("学生补卡吐卡成功，更新数据失败："+studentInfo);
                     return Error.UPDATE_INFO_ERROR;//返回信息更新失败消息
                 }
+                //传参：stuno,schoolid,newphyid,newcardid
                 return Error.BUKA_SUCCESS;
             }
            
+        }
+        private async Task<bool> PostCardInfoAsync(string stuno,string schoolid,string newphyid,string cardno)
+        {
+            var temp=await Task.Run( ()=>HttpUtil.GetBackData(stuno,schoolid,newphyid,cardno));
+            if (temp == null || temp == "学生信息不存在")
+            {
+                Log.WriteError("学生信息不存在或者参数错误，学号：" + stuno);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         //获取类型数据
         private byte GetType(string flag)

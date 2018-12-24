@@ -22,7 +22,7 @@ namespace yitiji_ma
 
         private void Guashi_Load(object sender, EventArgs e)
         {
-			
+
         }
 
         private void backBtn_Click(object sender, EventArgs e)
